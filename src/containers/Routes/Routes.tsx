@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import Pokedex from '../containers/Pokedex/Pokedex';
-import Pokeprofile from '../containers/Pokeprofile/Pokeprofile';
+import Pokedex from '../Pokedex/Pokedex';
+import Pokeprofile from '../Pokeprofile/Pokeprofile';
 
 const Routes: FC<any> = () => {
   const history = createBrowserHistory();

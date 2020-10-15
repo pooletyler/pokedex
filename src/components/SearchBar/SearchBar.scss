@@ -3,6 +3,7 @@
   height: 65px;
   width: 100%;
   border-radius: 4px;
+  position: relative;
 }
 
 .SearchBar-input {
@@ -26,4 +27,48 @@
   height: 60px;
   width: auto;
   cursor: pointer;
+}
+
+.SearchBar-recentSearchContainer {
+  position: fixed;
+  height: auto;
+  background-color: #ffffff;
+  z-index: 13;
+  border-radius: 4px;
+  top: 300px;
+  width: 265px;
+  border: 4px solid #f8f9fb;
+}
+
+.SearchBar-recentSearchTitle {
+  padding-left: 29px;
+  margin: 15px 0;
+  text-transform: uppercase;
+  color: #9fa9ba;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 13px;
+  text-align: left;
+}
+
+.SearchBar-recentSearch {
+  color: #002646;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  display: block;
+  width: 100%;
+  line-height: 30px;
+  margin: 10px;
+  text-align: left;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    background-color: #f5f6f6;
+  }
+  &:focus {
+    background-color: #f5f6f6;
+  }
+  text-transform: uppercase;
 }

@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Pokedex from '../Pokedex/Pokedex';
-import Pokeprofile from '../Pokeprofile/Pokeprofile';
 
 const Routes: FC<any> = () => {
   const history = createBrowserHistory();
@@ -14,8 +13,7 @@ const Routes: FC<any> = () => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/pokedex" component={Pokedex} />
-        <Route path="/pokemon/:pokemon" component={Pokeprofile} />
+        <Route path="/" component={Pokedex} />
       </Switch>
     </Router>
   );

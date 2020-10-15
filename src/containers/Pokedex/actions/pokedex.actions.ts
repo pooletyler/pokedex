@@ -40,11 +40,19 @@ export const updatePokemonInList = async (
   Promise: PromiseConstructor,
   slice: { lower: number; upper: number },
   pokemonList: (NamedAPIResource | Pokemon)[],
+  searchString: string,
   getData,
-  setPokemonList
+  setPokemonList,
+  setLoading
 ) => {
   Promise.all(
     pokemonList
+      .filter((pokemon: NamedAPIResource | Pokemon) => {
+        return (
+          pokemon &&
+          pokemon.name.toLowerCase().includes(searchString.toLowerCase())
+        );
+      })
       .slice(slice.lower, slice.upper)
       .map((pokemon: NamedAPIResource | Pokemon) => {
         if (pokemon.url) {
@@ -56,9 +64,13 @@ export const updatePokemonInList = async (
       })
   ).then((updatedPokemonSlice: Pokemon[]) => {
     const updatedPokemonList = [...pokemonList];
-    updatedPokemonList.splice(slice.lower, slice.upper, ...updatedPokemonSlice);
+
+    updatedPokemonSlice.forEach((pokemon: Pokemon) => {
+      updatedPokemonList[pokemon.id - 1] = pokemon;
+    });
 
     dispatch(setPokemonList(updatedPokemonList));
+    dispatch(setLoading(false));
   });
 };
 
@@ -68,13 +80,33 @@ export const loadMorePokemonCards = (
   offset: number,
   setOffset
 ) => {
-  console.log('running');
   if (
     pokemonCardsContainerRef.current.scrollHeight -
       pokemonCardsContainerRef.current.scrollTop ===
     pokemonCardsContainerRef.current.clientHeight
   ) {
-    console.log('hey')
     dispatch(setOffset(offset + 20));
   }
+};
+
+export const updateRecentSearches = (
+  dispatch: Dispatch<any>,
+  searchString: string,
+  getCookie,
+  setCookie,
+  setRecentSearches
+) => {
+  const recentSearches =
+    (getCookie('recentSearches') && JSON.parse(getCookie('recentSearches'))) ||
+    [];
+
+  if (searchString !== '') {
+    recentSearches.push(searchString);
+  }
+  if (recentSearches.length > 10) {
+    recentSearches.shift();
+  }
+
+  setCookie('recentSearches', JSON.stringify(recentSearches), 10);
+  dispatch(setRecentSearches(recentSearches));
 };

@@ -1,13 +1,13 @@
 .SearchBar-container {
   background-color: #ffffff;
   height: 65px;
-  width: 590px;
+  width: 100%;
   border-radius: 4px;
 }
 
 .SearchBar-input {
   height: auto;
-  width: 475px;
+  width: auto;
   height: 60px;
   border: none;
   border-radius: 4px;
@@ -24,6 +24,6 @@
   padding: 0 31px;
   margin-right: 1px;
   height: 60px;
-  width: 105px;
+  width: auto;
   cursor: pointer;
 }

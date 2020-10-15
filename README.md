@@ -1,44 +1,26 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Additional features:
 
-## Available Scripts
+1.  A better backing API would provide immense value, as all searching with partial match must be done on the front-end. PokeAPI unfortunately only allows for exact match. This would also enable a filter feature where you can fine tune by color, weight, height, type, etc.
+2.  User Profiles are always preferred to persisting data in cookies, even if its as minimal as recent search history. Cookies will not be around forever.
+3.  More drill in areas that the user can click to learn more about.
 
-In the project directory, you can run:
+Assumptions on use cases:
 
-### `yarn start`
+1.  The page was optimized for mobile UX because I would assume ash is not lugging around a laptop to scan Pokemon.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Other technologies to use:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1.  A wrapping API in Amazon ElasticSearch to provide an actual search algorithm and better data structures
+2.  Storybook (https://storybook.js.org/) would help for component prototyping
+3.  JSS is preferable to SASS for its ability to be written in javascript and link into animation libraries like GSAP (https://greensock.com/react/) and Framer (https://www.framer.com/motion/)
+4.  GraphQL would significantly reduce REST calls and allow for querying in a logical sense rather than chasing archaic data models.
 
-### `yarn test`
+Performance concerns:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.  PokeAPI is really poorly designed with all the objects and calls you need to make to do simple things like a UX friendly search (ie. not just doing exact match).
+2.  This leads to performance concerns as you need REST call after REST call just to gather all the information for a single pokemon. Why does the Pokemon model not have color? Why is that on Pokemon-Species. There are many cases where you question why they separated thir models the way they did. As I said previously, I believe a wrapping API in GraphQL would be a major boost to this project.
 
-### `yarn build`
+Visual enhancements:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1.  A real desktop view and not one that has been prioritized as mobile-first for the sake of project deadlines.
+2.  Better animations.
